@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Shop - Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <span>Your cart</span>
+    <a id="back-link" href="inventory.html">Continue shopping</a>
+  </header>
+  <main class="card">
+    <ul id="cart-items"></ul>
+    <p id="empty-message" hidden>Your cart is empty</p>
+    <p>Item total: <strong id="cart-total">$0.00</strong></p>
+  </main>
+  <script src="app.js"></script>
+  <script>initCartPage();</script>
+</body>
+</html>

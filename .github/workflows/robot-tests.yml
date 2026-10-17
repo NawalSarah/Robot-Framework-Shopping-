@@ -1,0 +1,29 @@
+name: Robot UI tests
+
+# Runs on every push and pull request, then publishes the HTML report as a downloadable artifact.
+on: [push, pull_request]
+
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ubuntu-latest already has Chrome; Selenium Manager fetches the matching driver.
+      - name: Run Robot Framework tests
+        run: python run_tests.py
+
+      - name: Upload test report
+        if: always()          # upload even when tests fail - that is when you need it most
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-report
+          path: results/
